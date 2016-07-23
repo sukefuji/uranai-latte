@@ -1,6 +1,7 @@
 /// <reference path="./jquery-3.1.0.min.js" />
 
 $(function () {
+	$('table').hide();
     $('#submit-button').click(function () {
 		paramDate = getFormattedDate(new Date());
 
@@ -69,7 +70,7 @@ $(function () {
 
     //占い情報の表示
 	function printFortuneData(obj){
-		createPrintData(obj);
+		//createPrintData(obj);
 		$('#content').html(obj['content']);
 		$('#money').html(obj['money']);
 		$('#job').html(obj['job']);
@@ -79,12 +80,23 @@ $(function () {
 		$('#color').html(obj['color']);
 		$('#rank').html(obj['rank']);
 		$('#sign').html(obj['sign']);
+		$('table').show();
 	}
-	//占い情報の成形
-	function createPrintData(obj){
-		obj['item'] = "<label>ラッキーアイテム<label>" + obj['item'];
-		obj['color'] = "<label>ラッキーカラー<label>"+ obj['item'];
-		obj['rank'] = obj['rank'] + "位";
-		obj['sign']　= "座のあなた";
-	}
+
+//	占い情報の成形
+	// function createPrintData(obj){		
+		// $('#money').html(obj['money']);
+		// $('#job').html(obj['job']);
+		// $('#love').html(obj['love']);
+		// $('#total').html(obj['total']);
+		// $('#item').html(obj['item']);
+		// $('#color').html(obj['color']);
+		// $('#rank').html(obj['rank']);
+		// $('#sign').html(obj['sign']);
+		
+		// obj['item'] = "<label>ラッキーアイテム<label>" + obj['item'];
+		// obj['color'] = "<label>ラッキーカラー<label>"+ obj['item'];
+		// obj['rank'] = obj['rank'] + "位";
+		// obj['sign']　= "座のあなた";
+	// }
 })
