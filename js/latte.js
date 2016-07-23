@@ -1,8 +1,10 @@
 /// <reference path="./jquery-3.1.0.min.js" />
 
 $(function () {
-	$('table').hide();
+    $('table').hide();
     $('#submit-button').click(function () {
+        event.preventDefault();
+
         paramDate = getFormattedDate(new Date());
 
         var ajax = $.ajax({
@@ -62,8 +64,8 @@ $(function () {
             case '4':
                 result = '調子ええなぁ！';
                 break;
-            default :
-                result = getKansaiben(name, counter+1, (day + 1));
+            default:
+                result = getKansaiben(name, counter + 1, (day + 1));
                 break;
         }
         return result;
@@ -107,32 +109,32 @@ $(function () {
     }
 
     //占い情報の表示
-	function printFortuneData(obj){
-		//createPrintData(obj);
-		initPrintData(obj);
-		$('#content').html(obj['content']);
-		$('#item').html(obj['item']);
-		$('#color').html(obj['color']);
-		$('#rank').html(obj['rank']);
-		$('#sign').html(obj['sign']);
-		$('table').show();
-	}
-	function initPrintData(obj){
-		$('#money').rateit({
-			value:obj['money'],
-			readonly:true
-		});
-		$('#job').rateit({
-			value:obj['job'],
-			readonly:true
-		});
-		$('#love').rateit({
-			value:obj['love'],
-			readonly:true
-		});
-		$('#total').rateit({
-			value:obj['total'],
-			readonly:true
-		});
-	}
+    function printFortuneData(obj) {
+        //createPrintData(obj);
+        initPrintData(obj);
+        $('#content').html(obj['content']);
+        $('#item').html(obj['item']);
+        $('#color').html(obj['color']);
+        $('#rank').html(obj['rank']);
+        $('#sign').html(obj['sign']);
+        $('table').show();
+    }
+    function initPrintData(obj) {
+        $('#money').rateit({
+            value: obj['money'],
+            readonly: true
+        });
+        $('#job').rateit({
+            value: obj['job'],
+            readonly: true
+        });
+        $('#love').rateit({
+            value: obj['love'],
+            readonly: true
+        });
+        $('#total').rateit({
+            value: obj['total'],
+            readonly: true
+        });
+    }
 })
