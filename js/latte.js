@@ -17,7 +17,7 @@ $(function () {
 
                 inputDate = new Date($('#birth').val());
                 var resultObj = detectFortuneTelling(inputDate, json, paramDate);
-				resultObj["message"] = getMessage($('#userName').val());
+				resultObj["message"] = getMessage($('#userName').val(),inputDate);
 				printFortuneData(resultObj);
             },
 
