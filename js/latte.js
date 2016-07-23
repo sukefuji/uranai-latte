@@ -71,16 +71,31 @@ $(function () {
     //占い情報の表示
 	function printFortuneData(obj){
 		//createPrintData(obj);
+		initPrintData(obj);
 		$('#content').html(obj['content']);
-		$('#money').html(obj['money']);
-		$('#job').html(obj['job']);
-		$('#love').html(obj['love']);
-		$('#total').html(obj['total']);
 		$('#item').html(obj['item']);
 		$('#color').html(obj['color']);
 		$('#rank').html(obj['rank']);
 		$('#sign').html(obj['sign']);
 		$('table').show();
+	}
+	function initPrintData(obj){
+		$('#money').rateit({
+			value:obj['money'],
+			readonly:true
+		});
+		$('#job').rateit({
+			value:obj['job'],
+			readonly:true
+		});
+		$('#love').rateit({
+			value:obj['love'],
+			readonly:true
+		});
+		$('#total').rateit({
+			value:obj['total'],
+			readonly:true
+		});
 	}
 
 })
