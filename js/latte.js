@@ -1,8 +1,10 @@
 /// <reference path="./jquery-3.1.0.min.js" />
 
 $(function () {
-	$('table').hide();
+    $('table').hide();
     $('#submit-button').click(function () {
+        event.preventDefault();
+
         paramDate = getFormattedDate(new Date());
 
         var ajax = $.ajax({
@@ -61,8 +63,8 @@ $(function () {
             case '4':
                 result = '調子ええなぁ！';
                 break;
-            default :
-                result = getKansaiben(name, counter+1, (day + 1));
+            default:
+                result = getKansaiben(name, counter + 1, (day + 1));
                 break;
         }
         return result;
