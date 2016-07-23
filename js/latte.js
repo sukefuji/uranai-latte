@@ -2,7 +2,7 @@
 
 $(function () {
     $('#submit-button').click(function () {
-        paramDate = getFormattedDate(new Date());
+		paramDate = getFormattedDate(new Date());
 
         var ajax = $.ajax({
             type: 'GET',
@@ -15,6 +15,8 @@ $(function () {
                 var json = $.parseJSON(text);
 
                 inputDate = new Date($('#birth').val());
+				var resultObj = detectFortuneTelling(inputDate, json, paramDate);				
+				printFortuneData(resultObj);
                 console.log(detectFortuneTelling(inputDate, json, paramDate));
             },
 
@@ -66,7 +68,8 @@ $(function () {
     }
 
     //占い情報の表示
-	function printFortuneData(obj){	
+	function printFortuneData(obj){
+		createPrintData(obj);
 		$('#content').html(obj['content']);
 		$('#money').html(obj['money']);
 		$('#job').html(obj['job']);
@@ -77,5 +80,11 @@ $(function () {
 		$('#rank').html(obj['rank']);
 		$('#sign').html(obj['sign']);
 	}
-
+	//占い情報の成形
+	function createPrintData(obj){
+		obj['item'] = "<label>ラッキーアイテム<label>" + obj['item'];
+		obj['color'] = "<label>ラッキーカラー<label>"+ obj['item'];
+		obj['rank'] = obj['rank'] + "位";
+		obj['sign']　= "座のあなた";
+	}
 })
