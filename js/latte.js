@@ -18,7 +18,7 @@ $(function () {
                 inputDate = new Date($('#birth').val());
                 var resultObj = detectFortuneTelling(inputDate, json, paramDate);
                 printFortuneData(resultObj);
-                console.log(getMessage($('#userName').val()))
+                console.log(getMessage($('#userName').val(), new Date()))
             },
 
             // 通信失敗時の処理
@@ -30,8 +30,8 @@ $(function () {
 
     });
 
-    function getMessage(name) {
-        var kansaiben = getKansaiben(name, 0);
+    function getMessage(name, inputDate) {
+        var kansaiben = getKansaiben(name, 0, inputDate.getDate());
 
         if (kansaiben == '') {
             kansaiben = 'つれもてしよら〜'
@@ -40,36 +40,30 @@ $(function () {
         return kansaiben;
     }
 
-    function getKansaiben(name, counter) {
+    function getKansaiben(name, counter, day) {
 
         if (counter > 2) {
             return '';
         }
 
-        // 生成する文字列に含める文字セット
-        var c = name;
-        var cl = c.length;
-
-        console.log(Math.floor(Math.random() * cl));
-
-        switch (Math.floor(Math.random() * cl)) {
-            case 0:
+        switch (String(day * name.length).slice(-1)) {
+            case '0':
                 result = 'まいどおおきに！';
                 break;
-            case 1:
+            case '1':
                 result = 'ええ感じやで！';
                 break;
-            case 2:
+            case '2':
                 result = 'もうかりまっか？';
                 break;
-            case 3:
+            case '3':
                 result = 'めっちゃおもろいやん！';
                 break;
-            case 4:
+            case '4':
                 result = '調子ええなぁ！';
                 break;
             default :
-                result = getKansaiben(name, counter+1);
+                result = getKansaiben(name, counter+1, (day + 1));
                 break;
         }
         return result;
