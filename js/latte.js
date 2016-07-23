@@ -1,7 +1,7 @@
 /// <reference path="./jquery-3.1.0.min.js" />
 
 $(function () {
-    $('table').hide();
+    $('#fortuneResultArea').hide();
     $('#form').submit(function () {
         event.preventDefault();
 
@@ -109,7 +109,9 @@ $(function () {
 
     //占い情報の表示
 	function printFortuneData(obj){
-		//createPrintData(obj);
+		//２度目を押されたときように隠す
+		$('#fortuneResultArea').hide();
+		
 		initPrintData(obj);
 		$('#content').html(obj['content']);
 		$('#item').html(obj['item']);
@@ -118,7 +120,10 @@ $(function () {
 		$('#sign').html(obj['sign']);
 		$('#message').html(obj['message']);
 		
-		$('table').show();
+		$('#kansaiben').hide();
+		$('#fortuneResultArea').fadeIn(500);
+		$('#kansaiben').fadeIn(3000);
+		
 	}
 	//占い情報の成形
 	function initPrintData(obj){
