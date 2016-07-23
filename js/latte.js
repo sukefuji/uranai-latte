@@ -14,7 +14,11 @@ $(function () {
                 var text = $(responseText).find('body').text();
                 var json = $.parseJSON(text);
 
-                detectFortuneTelling(new Date(), json, paramDate);
+                inputDate = new Date();
+
+
+
+                detectFortuneTelling(inputDate, json, paramDate);
             },
 
             // 通信失敗時の処理
