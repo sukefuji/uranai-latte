@@ -19,8 +19,8 @@ $(function () {
 
                 inputDate = new Date($('#birth').val());
                 var resultObj = detectFortuneTelling(inputDate, json, paramDate);
-                printFortuneData(resultObj);
-                console.log(getMessage($('#userName').val(), new Date()))
+				resultObj["message"] = getMessage($('#userName').val());
+				printFortuneData(resultObj);
             },
 
             // 通信失敗時の処理
@@ -29,7 +29,6 @@ $(function () {
                 alert('NG...');
             }
         })
-
     });
 
     function getMessage(name, inputDate) {
@@ -109,32 +108,36 @@ $(function () {
     }
 
     //占い情報の表示
-    function printFortuneData(obj) {
-        //createPrintData(obj);
-        initPrintData(obj);
-        $('#content').html(obj['content']);
-        $('#item').html(obj['item']);
-        $('#color').html(obj['color']);
-        $('#rank').html(obj['rank']);
-        $('#sign').html(obj['sign']);
-        $('table').show();
-    }
-    function initPrintData(obj) {
-        $('#money').rateit({
-            value: obj['money'],
-            readonly: true
-        });
-        $('#job').rateit({
-            value: obj['job'],
-            readonly: true
-        });
-        $('#love').rateit({
-            value: obj['love'],
-            readonly: true
-        });
-        $('#total').rateit({
-            value: obj['total'],
-            readonly: true
-        });
-    }
+	function printFortuneData(obj){
+		//createPrintData(obj);
+		initPrintData(obj);
+		$('#content').html(obj['content']);
+		$('#item').html(obj['item']);
+		$('#color').html(obj['color']);
+		$('#rank').html(obj['rank']);
+		$('#sign').html(obj['sign']);
+		$('#message').html(obj['message']);
+		
+		$('table').show();
+	}
+	//占い情報の成形
+	function initPrintData(obj){
+		$('#money').rateit({
+			value:obj['money'],
+			readonly:true
+		});
+		$('#job').rateit({
+			value:obj['job'],
+			readonly:true
+		});
+		$('#love').rateit({
+			value:obj['love'],
+			readonly:true
+		});
+		$('#total').rateit({
+			value:obj['total'],
+			readonly:true
+		});
+		obj['rank'] = obj['rank']+"位";
+	}
 })
