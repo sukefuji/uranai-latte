@@ -2,7 +2,7 @@
 
 $(function () {
     $('table').hide();
-    $('#submit-button').click(function () {
+    $('#form').submit(function () {
         event.preventDefault();
 
         paramDate = getFormattedDate(new Date());

@@ -6,13 +6,13 @@
 	<link rel="stylesheet" type="text/css" href="../css/latte.css" media="all">
 	<link href="../css/rateit.css" rel="stylesheet" type="text/css" />
 
-	<form>
-		名前<input type="text" id="userName" /></br>
-		誕生日<input type="date" id="birth" /></br>
+	<form action="" name="form" id="form">
+		名前<input type="text" id="userName" required="required" /></br>
+		誕生日<input type="date" id="birth" required="required" /></br>
 		<input type="submit" id="submit-button" value="占う" />
 	</form>
-	 <div id="content"></div>
-	 <table>
+	<div id="content"></div>
+	<table>
 		<tr>
 			<th>金運</th>
 			<td id='money'></td>
