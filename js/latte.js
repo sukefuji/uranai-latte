@@ -30,5 +30,16 @@ $(function () {
     function getFormattedDate(date) {
         return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
     }
-
+    //占い情報の表示
+	function printFortuneData(obj){	
+		$('#content').html(obj['content']);
+		$('#money').html(obj['money']);
+		$('#job').html(obj['job']);
+		$('#love').html(obj['love']);
+		$('#total').html(obj['total']);
+		$('#item').html(obj['item']);
+		$('#color').html(obj['color']);
+		$('#rank').html(obj['rank']);
+		$('#sign').html(obj['sign']);
+	}
 })
