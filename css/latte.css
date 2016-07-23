@@ -11,3 +11,8 @@ body{
 	margin: 0 auto;
 	background-color:#DDFFFF;
 }
+#message{
+	color:red;
+	font-size:20px;
+	font-weight:bold;
+}
