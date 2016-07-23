@@ -2,7 +2,7 @@
 
 $(function () {
     $('#submit-button').click(function () {
-		paramDate = getFormattedDate(new Date());
+        paramDate = getFormattedDate(new Date());
 
         var ajax = $.ajax({
             type: 'GET',
@@ -15,9 +15,9 @@ $(function () {
                 var json = $.parseJSON(text);
 
                 inputDate = new Date($('#birth').val());
-				var resultObj = detectFortuneTelling(inputDate, json, paramDate);				
-				printFortuneData(resultObj);
-                console.log(detectFortuneTelling(inputDate, json, paramDate));
+                var resultObj = detectFortuneTelling(inputDate, json, paramDate);
+                printFortuneData(resultObj);
+                console.log(getMessage($('#userName').val()))
             },
 
             // 通信失敗時の処理
@@ -29,6 +29,51 @@ $(function () {
 
     });
 
+    function getMessage(name) {
+        var kansaiben = getKansaiben(name, 0);
+
+        if (kansaiben == '') {
+            kansaiben = 'つれもてしよら〜'
+        }
+
+        return kansaiben;
+    }
+
+    function getKansaiben(name, counter) {
+
+        if (counter > 2) {
+            return '';
+        }
+
+        // 生成する文字列に含める文字セット
+        var c = name;
+        var cl = c.length;
+
+        console.log(Math.floor(Math.random() * cl));
+
+        switch (Math.floor(Math.random() * cl)) {
+            case 0:
+                result = 'まいどおおきに！';
+                break;
+            case 1:
+                result = 'ええ感じやで！';
+                break;
+            case 2:
+                result = 'もうかりまっか？';
+                break;
+            case 3:
+                result = 'めっちゃおもろいやん！';
+                break;
+            case 4:
+                result = '調子ええなぁ！';
+                break;
+            default :
+                result = getKansaiben(name, counter+1);
+                break;
+        }
+        return result;
+    }
+
     function getFormattedDate(date) {
         return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
     }
@@ -37,9 +82,8 @@ $(function () {
         var result;
 
         var constellation = getConstellation(date);
-        console.log(constellation);
 
-        json.horoscope[Object.keys(json.horoscope)[0]].forEach(function(element) {
+        json.horoscope[Object.keys(json.horoscope)[0]].forEach(function (element) {
             if (constellation == element.sign) {
                 result = element;
             }
@@ -68,23 +112,23 @@ $(function () {
     }
 
     //占い情報の表示
-	function printFortuneData(obj){
-		createPrintData(obj);
-		$('#content').html(obj['content']);
-		$('#money').html(obj['money']);
-		$('#job').html(obj['job']);
-		$('#love').html(obj['love']);
-		$('#total').html(obj['total']);
-		$('#item').html(obj['item']);
-		$('#color').html(obj['color']);
-		$('#rank').html(obj['rank']);
-		$('#sign').html(obj['sign']);
-	}
-	//占い情報の成形
-	function createPrintData(obj){
-		obj['item'] = "<label>ラッキーアイテム<label>" + obj['item'];
-		obj['color'] = "<label>ラッキーカラー<label>"+ obj['item'];
-		obj['rank'] = obj['rank'] + "位";
-		obj['sign']　= "座のあなた";
-	}
+    function printFortuneData(obj) {
+        createPrintData(obj);
+        $('#content').html(obj['content']);
+        $('#money').html(obj['money']);
+        $('#job').html(obj['job']);
+        $('#love').html(obj['love']);
+        $('#total').html(obj['total']);
+        $('#item').html(obj['item']);
+        $('#color').html(obj['color']);
+        $('#rank').html(obj['rank']);
+        $('#sign').html(obj['sign']);
+    }
+    //占い情報の成形
+    function createPrintData(obj) {
+        obj['item'] = "<label>ラッキーアイテム<label>" + obj['item'];
+        obj['color'] = "<label>ラッキーカラー<label>" + obj['item'];
+        obj['rank'] = obj['rank'] + "位";
+        obj['sign'] = "座のあなた";
+    }
 })
