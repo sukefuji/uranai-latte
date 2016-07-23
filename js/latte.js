@@ -15,7 +15,7 @@ $(function () {
                 var json = $.parseJSON(text);
 
                 inputDate = new Date($('#birth').val());
-                detectFortuneTelling(inputDate, json, paramDate);
+                console.log(detectFortuneTelling(inputDate, json, paramDate));
             },
 
             // 通信失敗時の処理
@@ -32,16 +32,18 @@ $(function () {
     }
 
     function detectFortuneTelling(date, json, paramDate) {
+        var result;
 
         var constellation = getConstellation(date);
         console.log(constellation);
 
         json.horoscope[Object.keys(json.horoscope)[0]].forEach(function(element) {
             if (constellation == element.sign) {
-                console.log(element);
-                return element;
+                result = element;
             }
         }, this);;
+
+        return result;
 
     }
 
