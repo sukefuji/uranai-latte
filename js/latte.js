@@ -2,20 +2,19 @@
 
 $(function () {
     $('#submit-button').click(function () {
-        date = new Date();
+        paramDate = getFormattedDate(new Date());
+
         var ajax = $.ajax({
             type: 'GET',
-            url: 'http://api.jugemkey.jp/api/horoscope/free/' + getFormattedDate(new Date()),
+            url: 'http://api.jugemkey.jp/api/horoscope/free/' + paramDate,
 
             // 通信成功時の処理
             success: function (result, textStatus, xhr) {
-                // 入力値を初期化
-                // console.log($.parseXML(result.responseText).find('body'));
-
                 var responseText = $.parseXML(result.responseText);
                 var text = $(responseText).find('body').text();
                 var json = $.parseJSON(text);
 
+                detectFortuneTelling(new Date(), json, paramDate);
             },
 
             // 通信失敗時の処理
@@ -29,6 +28,38 @@ $(function () {
 
     function getFormattedDate(date) {
         return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+    }
+
+    function detectFortuneTelling(date, json, paramDate) {
+
+        var constellation = getConstellation(date);
+        console.log(constellation);
+
+        json.horoscope[Object.keys(json.horoscope)[0]].forEach(function(element) {
+            if (constellation == element.sign) {
+                console.log(element);
+                return element;
+            }
+        }, this);;
+
+    }
+
+    function getConstellation(date) {
+        // 星座リスト
+        var constellations = new Array("山羊座", "水瓶座", "魚座", "牡羊座", "牡牛座", "双子座", "蟹座", "獅子座", "乙女座", "天秤座", "蠍座", "射手座");
+        // 境界となる日付
+        var borderDays = new Array(20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23, 22);
+
+        var month = date.getMonth();
+        var day = date.getDate();
+
+        // 境界日付との前後関係から星座を決定
+        var borderDay = borderDays[month];
+        var index = day < borderDay ? month : month + 1;
+        if (index >= constellations.length) {
+            index = 0; // 12月後半生まれの時の処置
+        }
+        return constellations[index];
     }
 
 })
