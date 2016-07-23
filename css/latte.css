@@ -1,0 +1,13 @@
+body{
+	background-image:url(../img/back.gif)
+}
+#inputArea{
+	width:80%;
+	margin: 0 auto;
+	background-color:#DDFFFF;
+}
+#fortuneResultArea{
+	width:80%;
+	margin: 0 auto;
+	background-color:#DDFFFF;
+}
