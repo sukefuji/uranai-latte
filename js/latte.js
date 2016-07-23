@@ -83,20 +83,4 @@ $(function () {
 		$('table').show();
 	}
 
-//	占い情報の成形
-	// function createPrintData(obj){		
-		// $('#money').html(obj['money']);
-		// $('#job').html(obj['job']);
-		// $('#love').html(obj['love']);
-		// $('#total').html(obj['total']);
-		// $('#item').html(obj['item']);
-		// $('#color').html(obj['color']);
-		// $('#rank').html(obj['rank']);
-		// $('#sign').html(obj['sign']);
-		
-		// obj['item'] = "<label>ラッキーアイテム<label>" + obj['item'];
-		// obj['color'] = "<label>ラッキーカラー<label>"+ obj['item'];
-		// obj['rank'] = obj['rank'] + "位";
-		// obj['sign']　= "座のあなた";
-	// }
 })
