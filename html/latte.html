@@ -5,17 +5,18 @@
 <body>
 	<link rel="stylesheet" type="text/css" href="../css/latte.css" media="all">
 	<link href="../css/rateit.css" rel="stylesheet" type="text/css" />
+
 	<div id="inputArea">
-	<h2>今日のあなたの運勢</h2>
-		<form>
-			名前<input type="text" id="userName" /></br>
-			誕生日<input type="date" id="birth" /></br>
+		<form action="" name="form" id="form">
+			名前<input type="text" id="userName" required="required" /></br>
+			誕生日<input type="date" id="birth" required="required" /></br>
 			<input type="submit" id="submit-button" value="占う" />
 		</form>
 	</div>
+	
 	<div id="fortuneResultArea">
-		 <div id="content"></div>
-		 <table>
+		<div id="content"></div>
+		<table>
 			<tr>
 				<th>金運</th>
 				<td id='money'></td>
@@ -45,7 +46,7 @@
 				<td id='item'></td>
 			</tr>
 			<tr>
-				<th>今日の関西弁</th>
+				<th>ラッキー関西弁</th>
 				<td id='message'></td>
 			</tr>
 		</table>
