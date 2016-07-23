@@ -14,10 +14,7 @@ $(function () {
                 var text = $(responseText).find('body').text();
                 var json = $.parseJSON(text);
 
-                inputDate = new Date();
-
-
-
+                inputDate = new Date($('#birth').val());
                 detectFortuneTelling(inputDate, json, paramDate);
             },
 
