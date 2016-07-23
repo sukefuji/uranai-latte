@@ -15,7 +15,9 @@ $(function () {
                 var json = $.parseJSON(text);
 
                 inputDate = new Date($('#birth').val());
-                detectFortuneTelling(inputDate, json, paramDate);
+				var resultObj = detectFortuneTelling(inputDate, json, paramDate);
+				
+				printFortuneData(resultObj);
             },
 
             // 通信失敗時の処理
@@ -75,5 +77,15 @@ $(function () {
 		$('#rank').html(obj['rank']);
 		$('#sign').html(obj['sign']);
 	}
-
+	function createPrintData(){
+		obj['content']
+		$('#money').html(obj['money']);
+		$('#job').html(obj['job']);
+		$('#love').html(obj['love']);
+		$('#total').html(obj['total']);
+		obj['item'] = "ラッキーアイテム :" + obj['item'];
+		obj['color'] = "ラッキーカラー :"
+		obj['rank'] = obj['rank'] + "位";
+		obj['sign'])　= "座のあなた"
+	}
 })
