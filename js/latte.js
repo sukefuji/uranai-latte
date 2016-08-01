@@ -1,7 +1,9 @@
 /// <reference path="./jquery-3.1.0.min.js" />
 
 $(function () {
+	
     $('#fortuneResultArea').hide();
+	initPrintArea();
     $('#form').submit(function () {
         event.preventDefault();
 
@@ -127,22 +129,30 @@ $(function () {
 	}
 	//占い情報の成形
 	function initPrintData(obj){
+		$('#money').rateit('value',obj['money']);
+		$('#job').rateit('value',obj['job']);
+		$('#love').rateit('value',obj['love']);
+		$('#total').rateit('value',obj['total']);
+		obj['rank'] = obj['rank']+"位";
+	}
+	//占い情報表示エリアの初期設定
+	//(htmlベースでなぜかならないので)
+	function initPrintArea(){
 		$('#money').rateit({
-			value:obj['money'],
+			value:0,
 			readonly:true
 		});
 		$('#job').rateit({
-			value:obj['job'],
+			value:0,
 			readonly:true
 		});
 		$('#love').rateit({
-			value:obj['love'],
+			value:0,
 			readonly:true
 		});
 		$('#total').rateit({
-			value:obj['total'],
+			value:0,
 			readonly:true
 		});
-		obj['rank'] = obj['rank']+"位";
 	}
 })
