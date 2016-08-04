@@ -19,3 +19,12 @@ body{
 #money{
 	data-rateit-value:0
 }
+
+#happybirthday{
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent;
+	background: linear-gradient(transparent 60%, #ffff66 60%);
+	background: -webkit-linear-gradient(left, #DE487A, #FFDB4B, #2BD02B, #0095F9, #8E55FF);
+
+	font-size: 160%;
+}
