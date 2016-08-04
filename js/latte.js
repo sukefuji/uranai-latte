@@ -22,6 +22,7 @@ $(function () {
                 inputDate = new Date($('#birth').val());
                 resultObj = detectFortuneTelling(inputDate, json, paramDate);
 				resultObj["message"] = getMessage($('#userName').val(),inputDate);
+                resultObj["happybirthday"] = checkBirthday(inputDate);
 				printFortuneData(resultObj);
             },
 
@@ -32,6 +33,14 @@ $(function () {
             }
         })
     });
+
+    function checkBirthday(inputDate) {
+        date = new Date();
+        if (inputDate.getDate() == date.getDate() && inputDate.getMonth() == date.getMonth()) {
+            return 'お誕生日おめでとうございます！！';
+        }
+        return '';
+    }
 
     function getMessage(name, inputDate) {
         kansaiben = getKansaiben(name, 0, inputDate.getDate());
@@ -115,6 +124,7 @@ $(function () {
 		$('#fortuneResultArea').hide();
 		
 		initPrintData(obj);
+        $('#happybirthday').html(obj['happybirthday']);
 		$('#content').html(obj['content']);
 		$('#item').html(obj['item']);
 		$('#color').html(obj['color']);
